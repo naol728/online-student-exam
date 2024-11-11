@@ -1,5 +1,6 @@
+import InputField from "./components/Inputfild";
 function App() {
-  return <h2 className="bg-slate-400">lets get started</h2>;
+  return <></>;
 }
 
 export default App;

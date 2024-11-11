@@ -1,0 +1,18 @@
+guiadance for text field
+
+   <div className="justify-center flex items-center h-[100vh] flex-col space-y-2">
+      <InputField
+        lable={"Username"}
+        names={"Username"}
+        types={"username"}
+        id={"outlined-username-input"}
+        autoComplete={"current-password"}
+      />
+      <InputField
+        names={"Password"}
+        types={"password"}
+        id={"outlined-password-input"}
+        autoComplete={"current-password"}
+        lable={"Password"}
+      />
+    </div>
