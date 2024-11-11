@@ -1,4 +1,4 @@
-import Button from './Button'
+import Buttons from './Button'
 function containerlist({itemname}) {
     return (
         <li className="flex justify-between border-b-2 p-2">
@@ -7,9 +7,9 @@ function containerlist({itemname}) {
             </div>
            
 
-           <Button>
+           <Buttons>
             view
-            </Button> 
+            </Buttons> 
         </li>
     )
 }
