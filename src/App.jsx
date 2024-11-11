@@ -1,10 +1,6 @@
-
+import InputField from "./components/Inputfild";
 function App() {
-  return (
-    <>
-
-    </>
-  );
+  return <></>;
 }
 
 export default App;
