@@ -1,8 +1,10 @@
-import Quetions from "./components/Quetions";
+
+
 function App() {
   return (
     <>
-      <Quetions />
+
+
     </>
   );
 }
