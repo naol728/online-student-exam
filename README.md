@@ -16,8 +16,8 @@ The Online Student Exam Website is a web application designed to facilitate onli
 ## Technologies Used
 
 - **Frontend**: React, React Router, Tailwind CSS
-- **Backend**: Node.js, Express, MongoDB (if applicable)
-- **Deployment**: Netlify, Vercel (if applicable)
+- **Backend**: Node.js
+- **Deployment**: Netlify, Vercel 
 
 ## Installation
 
