@@ -3,12 +3,12 @@ import Navbar from '../components/Navbar'
 import { Outlet } from 'react-router-dom'
 export default function Applayout() {
   return (
-    <div className='h-screen'>
-      <div>
+    <div className='h-screen' >
+      <div className='h-[10%]'>
          <Navbar />
       </div>
 
-      <main>
+      <main >
         <Outlet />
       </main>
       
