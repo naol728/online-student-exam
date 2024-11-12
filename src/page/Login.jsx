@@ -5,7 +5,6 @@ export default function Login() {
   const [username,setUsename]=useState("")
   const [password,setPassword]=useState("")
 
-
 function handleusername(value){
  setUsename(value)
 }
