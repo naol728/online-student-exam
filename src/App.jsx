@@ -1,9 +1,8 @@
-import InputField from "./components/Inputfild";
-import Navbar from "./components/Navbar";
+import Quetions from "./components/Quetions";
 function App() {
   return (
     <>
-      <Navbar />
+      <Quetions />
     </>
   );
 }
