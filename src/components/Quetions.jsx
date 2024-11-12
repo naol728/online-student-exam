@@ -1,9 +1,91 @@
-import React from 'react'
+import React, { useState } from "react";
+import Buttons from "./Button";
 
-export default function Quetions() {
+export default function Questions() {
+  const questions = [
+    {
+      id: 1,
+      question: "What is the capital of France?",
+      options: ["Paris", "London", "Berlin", "Madrid"],
+      correctAnswer: 0,
+    },
+    {
+      id: 2,
+      question: "What is 2 + 2?",
+      options: ["3", "4", "5", "6"],
+      correctAnswer: 1,
+    },
+    {
+      id: 3,
+      question: "What is the largest planet in our solar system?",
+      options: ["Earth", "Jupiter", "Saturn", "Mars"],
+      correctAnswer: 1,
+    },
+    {
+      id: 4,
+      question: "Which ocean is the largest?",
+      options: ["Atlantic", "Indian", "Arctic", "Pacific"],
+      correctAnswer: 3,
+    },
+    {
+      id: 5,
+      question: "What is the boiling point of water?",
+      options: ["90°C", "100°C", "110°C", "120°C"],
+      correctAnswer: 1,
+    },
+  ];
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [userAnswers, setUserAnswers] = useState([]);
+
+  const handleNext = () => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedOption(null); // Reset selected option for next question
+    }
+  };
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+    setUserAnswers(() => [...userAnswers, option]);
+  };
+
   return (
-    <div>
-      
+    <div className="flex items-center justify-center">
+      <div className="w-[500px] max-w-md p-6 bg-white rounded-lg  h-[100vh]">
+        <p className="mt-4 text-gray-700">
+          {currentQuestion + 1} {questions[currentQuestion].question}
+        </p>
+
+        <div className="mt-4 space-y-2">
+          {questions[currentQuestion].options.map((option, index) => (
+            <div
+              key={index}
+              onClick={() => handleOptionClick(option)}
+              className={`w-full px-4 py-2 text-left rounded-md ${
+                selectedOption === option
+                  ? "bg-green-300 text-white" // Highlight selected option
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-end mt-6" onClick={handleNext}>
+          <Buttons
+            disabled={currentQuestion === questions.length - 1}
+            type={"outlined"}
+          >
+            {currentQuestion < questions.length - 1 ? `NEXT` : `FINISH`}
+          </Buttons>
+        </div>
+        <ul>
+          {currentQuestion < questions.length - 1 ? `onit ` : `${userAnswers}`}
+        </ul>
+      </div>
     </div>
-  )
+  );
 }
