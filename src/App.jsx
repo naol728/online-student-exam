@@ -1,8 +1,8 @@
-import InputField from "./components/Inputfild";
+
 function App() {
   return (
     <>
-    
+
     </>
   );
 }
