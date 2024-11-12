@@ -10,8 +10,8 @@ function container() {
   ];
 
   return (
-    <div className="container border border-s-4 justify-between ">
-      <ul className="divide-x-2 ">
+    <div className=" border border-s-1 rounded-md justify-between ">
+      <ul className="divide-x-1 ">
         {list.map((items) => (
           <Containerlist
             key={items.id}
