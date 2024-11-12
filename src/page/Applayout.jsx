@@ -8,7 +8,7 @@ export default function Applayout() {
          <Navbar />
       </div>
 
-      <main >
+      <main className='bg-blue-50' >
         <Outlet />
       </main>
       

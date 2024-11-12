@@ -13,8 +13,8 @@ function handlepassword(value){
  setPassword(value)
 }
   return (
-    <div >
-      <form >
+    <div className='flex items-center justify-center h-[85vh]'>
+      <form className='bg-blue-100 w-[80%] shadow-xl sm:w-[60%] lg:w-[40%] h-[400px] rounded-lg ' >
 
   
       <div className="flex justify-center items-center h-[400px] ">
@@ -42,7 +42,7 @@ function handlepassword(value){
 
 
      <div className="text-center  -mt-20">
-          <Button type="contained" size="large" className="w-[50%] sm:w-[20%]">log in</Button>
+          <Button type="contained" size="large" className="w-[50%] sm:w-[40%] lg:w-[40%]">log in</Button>
 
      </div>
      </form>
