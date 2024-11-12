@@ -1,8 +1,18 @@
 import React from 'react'
-
+import Navbar from '../components/Navbar'
+import { Outlet } from 'react-router-dom'
 export default function Applayout() {
   return (
-    <div>
+    <div className='h-screen' >
+      <div className='h-[10%]'>
+         <Navbar />
+      </div>
+
+      <main >
+        <Outlet />
+      </main>
+      
+
       
     </div>
   )

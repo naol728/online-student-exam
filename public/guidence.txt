@@ -7,6 +7,8 @@ guiadance for text field
         types={"username"}
         id={"outlined-username-input"}
         autoComplete={"current-password"}
+        value={}
+        handlChange={}
       />
       <InputField
         names={"Password"}
@@ -14,5 +16,7 @@ guiadance for text field
         id={"outlined-password-input"}
         autoComplete={"current-password"}
         lable={"Password"}
+        value={}
+        handlChange={}
       />
     </div>
