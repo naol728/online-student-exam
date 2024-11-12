@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        agdasima: ['"Agdasima"', 'serif'],
+        Lobster: ['"Lobster"', 'sans-serif'],
       },
     },
   },
