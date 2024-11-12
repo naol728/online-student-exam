@@ -46,14 +46,21 @@ export default function Questions() {
     }
   };
 
+  const handleBack = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+      setSelectedOption(userAnswers[currentQuestion - 1] || null); // Reset selected option for previous question
+    }
+  };
+
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setUserAnswers(() => [...userAnswers, option]);
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-[500px] max-w-md p-6 bg-white rounded-lg  h-[100vh]">
+    <div className="flex items-center justify-start m-3">
+      <div className="w-[500px] max-w-md p-6 bg-white rounded-lg  h-[100vh] mt-8">
         <p className="mt-4 text-gray-700">
           {currentQuestion + 1} {questions[currentQuestion].question}
         </p>
@@ -65,7 +72,7 @@ export default function Questions() {
               onClick={() => handleOptionClick(option)}
               className={`w-full px-4 py-2 text-left rounded-md ${
                 selectedOption === option
-                  ? "bg-green-300 text-white" // Highlight selected option
+                  ? "bg-blue-200 text-white" // Highlight selected option
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
             >
@@ -74,16 +81,27 @@ export default function Questions() {
           ))}
         </div>
 
-        <div className="flex justify-end mt-6" onClick={handleNext}>
-          <Buttons
-            disabled={currentQuestion === questions.length - 1}
-            type={"outlined"}
-          >
-            {currentQuestion < questions.length - 1 ? `NEXT` : `FINISH`}
-          </Buttons>
+        <div className="flex justify-between mt-6">
+          <div onClick={handleBack}>
+            {currentQuestion === 0 ? null : (
+              <Buttons disabled={currentQuestion === 0} type={"outlined"}>
+                BACK
+              </Buttons>
+            )}
+          </div>
+          <div onClick={handleNext}>
+            <Buttons
+              disabled={currentQuestion === questions.length - 1}
+              type={"outlined"}
+            >
+              {currentQuestion < questions.length - 1 ? `NEXT` : `FINISH`}
+            </Buttons>
+          </div>
         </div>
         <ul>
-          {currentQuestion < questions.length - 1 ? `onit ` : `${userAnswers}`}
+          {currentQuestion < questions.length - 1
+            ? `Good Luck `
+            : `${userAnswers}`}
         </ul>
       </div>
     </div>
