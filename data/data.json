@@ -1,0 +1,77 @@
+{
+  "students": [
+    {
+      "id": "1402037",
+      "name": "Naol Meseret",
+      "department": "software enginering",
+      "username": "naolm",
+      "password": "123456",
+      "year": 4,
+      "courses": [
+        {
+          "coursecode": 1,
+          "coursename": "mats",
+          "coursescore": 87
+        },
+        {
+          "coursecode": 2,
+          "coursename": "physics",
+          "coursescore": 100
+        },
+        {
+          "coursecode": 3,
+          "coursename": "history",
+          "coursescore": 30
+        }
+      ]
+    },
+    {
+      "id": "87664",
+      "name": "fuad seid",
+      "username": "fuad34",
+      "password": "fuad34",
+      "department": "software enginering",
+      "year": "2",
+      "courses": [
+        {
+          "coursecode": "65",
+          "coursename": "chemistry",
+          "coursescore": "97"
+        }
+      ]
+    },
+    {
+      "id": "123456",
+      "name": "abedla ",
+      "username": "abdela45",
+      "password": "abdela34",
+      "department": "software enginering",
+      "year": "1",
+      "courses": [
+        {
+          "coursecode": "457",
+          "coursename": "compiler design",
+          "coursescore": 0
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "4c8f",
+      "subject": "general question",
+      "questionss": [
+        {
+          "question": "who is the legend in 21 centurey?",
+          "option": [
+            "baltazar",
+            "mia khalifa",
+            "jhony sins",
+            "p dididy"
+          ],
+          "answer": "1"
+        }
+      ]
+    }
+  ]
+}
