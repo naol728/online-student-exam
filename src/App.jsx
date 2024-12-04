@@ -10,37 +10,37 @@ import Pagenotfound from "./page/Pagenotfound";
 const router = createBrowserRouter([
   {
     element: <Applayout />,
-    errorElement:<Error />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
         element: <Login />,
-        errorElement:<Error />,
+        errorElement: <Error />,
       },
       {
         path: "/home",
         element: <Home />,
-        errorElement:<Error />,
+        errorElement: <Error />,
       },
       {
         path: "/exam",
         element: <Exam />,
-        errorElement:<Error />,
+        errorElement: <Error />,
       },
       {
         path: "/Error",
         element: <Error />,
-        errorElement:<Error />,
+        errorElement: <Error />,
       },
       {
         path: "/done",
         element: <Done />,
-        errorElement:<Error />,
+        errorElement: <Error />,
       },
       {
         path: "*",
         element: <Pagenotfound />,
-        errorElement:<Error />,
+        errorElement: <Error />,
       },
     ],
   },
