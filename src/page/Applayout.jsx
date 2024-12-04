@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 export default function Applayout() {
   return (
-    //
+    //hhhh
     <div className="h-screen">
       <div className="h-[10%]">
         <Navbar />
