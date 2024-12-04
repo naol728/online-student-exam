@@ -28,13 +28,16 @@ export default function Home() {
                 Allowed time : {items.allowedtime}
               </li>
               <li className="text-xl mb-2">Start Time : {items.starttime}</li>
-              <li className="text-xl mb-12">Number of question : {items.noquestion}</li>
+              <li className="text-xl mb-12">
+                Number of question : {items.noquestion}
+              </li>
             </ul>
-
           ))}
 
-          <Buttons type="contained" size='large'  className=" sm:w-40 ">Start</Buttons>
-          </div>
+          <Buttons type="contained" size="large" className=" sm:w-40 ">
+            Start
+          </Buttons>
+        </div>
       </div>
 
       <div className="m-4 ">
