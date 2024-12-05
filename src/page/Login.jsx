@@ -32,6 +32,7 @@ const navigate =  useNavigate()
 
 
     function handlelogin(){
+
       const foundStudent = students.find(student => 
         student.password === passwordd && student.username === username
       );
@@ -51,6 +52,20 @@ const navigate =  useNavigate()
   function handlepassword(value) {
     setPassword(value);
   }
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        handlelogin();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handlelogin]);
+
   return (
     <div className="flex items-center justify-center h-[85vh]">
       <form className="bg-blue-100 w-[80%] shadow-xl sm:w-[60%] lg:w-[40%] h-[400px] rounded-lg ">
