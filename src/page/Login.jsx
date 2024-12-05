@@ -33,7 +33,7 @@ const navigate =  useNavigate()
 
     function handlelogin(){
       const foundStudent = students.find(student => 
-        student.password === passwordd && student.name === username
+        student.password === passwordd && student.username === username
       );
       if (foundStudent) {
 
