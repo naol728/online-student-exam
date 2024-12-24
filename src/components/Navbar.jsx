@@ -29,7 +29,10 @@ export default function Navbar() {
                   are you sure to logout
                 </h2>
               ) : (
-                "please enter the username and password given by your school administrator "
+                <h2 className="font-bold text-xl p-5">
+                  please enter the username and password given by your school
+                  administrator{" "}
+                </h2>
               )}
             </div>
           </Popup>
