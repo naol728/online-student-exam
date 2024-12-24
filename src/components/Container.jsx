@@ -3,25 +3,17 @@ import Containerlist from "./containerlist";
 
 function container() {
   const { state } = useStudentdata();
-  console.log(state);
-  const list = [
-    { name: "History", id: 12 },
-    {
-      name: "Biology",
-      id: 13,
-    },
-  ];
-
+  const list = state.studentinfo.courses;
+  
   return (
     <div className=" border border-s-1 rounded-md justify-between ">
       <ul className="divide-x-1 ">
-        {list.map((items) => (
+        {list.map((items) => 
           <Containerlist
-            key={items.id}
-            itemid={items.id}
-            itemname={items.name}
+            key={items.name}
+            item={items}
           />
-        ))}
+        )}
       </ul>
     </div>
   );
