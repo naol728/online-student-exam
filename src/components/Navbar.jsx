@@ -22,11 +22,15 @@ export default function Navbar() {
           {isautenticated ? "log out" : "help"}
         </Buttons>
         {
-          <Popup isOpen={isopenpopup} onClose={handleclose}>
+          <Popup isOpen={isopenpopup} onClose={handleclose} islogout={true}>
             <div className="flex flex-col justify-between w-full">
-              {isautenticated
-                ? "are you sure to logout"
-                : "please enter the username and password given by your school administrator "}
+              {isautenticated ? (
+                <h2 className="font-bold text-xl p-5">
+                  are you sure to logout
+                </h2>
+              ) : (
+                "please enter the username and password given by your school administrator "
+              )}
             </div>
           </Popup>
         }

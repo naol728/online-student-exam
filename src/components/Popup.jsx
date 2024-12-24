@@ -1,16 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useAuth } from "../context/Authprovider";
 
-function Popup({ isOpen, onClose, children }) {
+function Popup({ isOpen, onClose, children, islogout }) {
   if (!isOpen) return null;
-
+  const { isautenticated, logout } = useAuth();
+  const handlelogout = () => {
+    logout();
+  };
   return (
     <div style={popupStyles}>
       <div style={popupContentStyles}>
         {children}
-        <button style={closeButtonStyles} onClick={onClose}>
-          Close
-        </button>
+        <div className="flex justify-around">
+          <button style={closeButtonStyles} onClick={onClose}>
+            Close
+          </button>
+
+          {islogout ? (
+            isautenticated ? (
+              <button style={closeButtonStyles} onClick={handlelogout}>
+                {isautenticated ? "logout" : ""}
+              </button>
+            ) : (
+              <></>
+            )
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </div>
   );
