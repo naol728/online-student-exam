@@ -1,6 +1,9 @@
+import { useStudentdata } from "../context/Studentprovider";
 import Containerlist from "./containerlist";
 
 function container() {
+  const { state } = useStudentdata();
+  console.log(state);
   const list = [
     { name: "History", id: 12 },
     {
