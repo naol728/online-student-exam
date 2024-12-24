@@ -6,6 +6,8 @@ import Exam from "./page/Exam";
 import Home from "./page/Home";
 import Done from "./page/Done";
 import Pagenotfound from "./page/Pagenotfound";
+import Studentprovider from "./context/Studentprovider";
+import Questionprovider from "./context/Questionprovider";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/exam",
-        element: <Exam />,
+        element: (
+          <Questionprovider>
+            <Exam />
+          </Questionprovider>
+        ),
         errorElement: <Error />,
       },
       {
@@ -46,7 +52,15 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <Studentprovider>
+        <Authprovider>
+          <RouterProvider router={router} />
+        </Authprovider>
+      </Studentprovider>
+    </>
+  );
 }
 
 export default App;
