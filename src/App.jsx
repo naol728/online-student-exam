@@ -9,16 +9,21 @@ import Pagenotfound from "./page/Pagenotfound";
 import Studentprovider from "./context/Studentprovider";
 import Questionprovider from "./context/Questionprovider";
 import Authprovider from "./context/Authprovider";
+import Protectedroute from "./context/Protectedroute";
 
 const router = createBrowserRouter([
   {
-    element: <Applayout />,
+    path: "/",
+    element: <Login />,
+  },
+  {
+    element: (
+      <Protectedroute>
+        <Applayout />
+      </Protectedroute>
+    ),
     errorElement: <Error />,
     children: [
-      {
-        path: "/",
-        element: <Login />,
-      },
       {
         path: "/home",
         element: <Home />,
