@@ -4,7 +4,6 @@ import { useStudentdata } from "../context/Studentprovider";
 export default function Home() {
   const { state } = useStudentdata();
   const { studentinfo } = state;
-  console.log(studentinfo);
   const currentExam = [
     {
       corsecode: 1144,
@@ -17,12 +16,27 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-wrap sm:flex-nowrap space-y-6 sm:space-y-0 sm:space-x-6 h-full m-4">
-        <div className="w-full  h-max sm:h-64 sm:w-1/2  border border-slate-500 rounded-lg p-2  ">
-          <ul>
-            <li>Name: {studentinfo.name}</li>
-            <li>Field: {studentinfo.department}</li>
-            <li>stud id: {studentinfo.id}</li>
-            <li>year: {studentinfo.year}</li>
+        <div className="w-full  h-max sm:h-64 sm:w-1/2  border border-slate-500 rounded-lg p-5  ">
+          <ul className="flex flex-col">
+            <li className="text-xl font-bold">
+              Name:{" "}
+              <span className="text-lg font-semibold"> {studentinfo.name}</span>
+            </li>
+            <li className="text-xl font-bold">
+              Field:{" "}
+              <span className="text-lg font-semibold">
+                {studentinfo.department}
+              </span>
+            </li>
+            <li className="text-xl font-bold">
+              stud id:{" "}
+              <span className="text-lg font-semibold">{studentinfo.id}</span>{" "}
+            </li>
+            <li className="text-xl font-bold">
+              year:{" "}
+              <span className="text-lg font-semibold">{studentinfo.year}</span>
+              {" year"}
+            </li>
           </ul>
         </div>
         <div className="w-full sm:w-1/2  border    border-slate-500 rounded-lg p-2 h-64">
