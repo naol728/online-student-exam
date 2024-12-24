@@ -1,50 +1,28 @@
-import { useEffect, useReducer, useState } from "react";
+import { useState } from "react";
 import InputField from "../components/Inputfild";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useStudentdata } from "../context/Studentprovider";
+import { Alert } from "@mui/material";
 
-const initialstate ={
-  students:[],
-}
-
-function reducer(state,action){
-switch(action.type){
-  case 'pass':
-    return {
-      ...state,
-      students:action.payload,
-    }
-}
-}
 export default function Login() {
   const [username, setUsename] = useState("");
   const [passwordd, setPassword] = useState("");
+  const { studdata, dispach, state } = useStudentdata();
+  const navigate = useNavigate();
 
-const [{students},dispach]= useReducer(reducer,initialstate);
-
-const navigate =  useNavigate()
- 
-    useEffect(function () {
-      fetch("http://localhost:8000/students")
-        .then((res) => res.json())
-        .then((data) => dispach({type:'pass', payload:data}));
-    }, []);
-
-
-    function handlelogin(){
-
-      const foundStudent = students.find(student => 
+  function handlelogin() {
+    const foundStudent = studdata.find(
+      (student) =>
         student.password === passwordd && student.username === username
-      );
-      if (foundStudent) {
+    );
 
-    navigate('home');
-    console.log('hey')
-   
-   } else{
-    alert('Invalid User name ')
-   }
-
+    if (foundStudent) {
+      dispach({ type: "login", payload: foundStudent });
+      navigate("home");
+    } else {
+      dispach({ type: "invalidcredital" });
+    }
   }
   function handleusername(value) {
     setUsename(value);
@@ -52,23 +30,21 @@ const navigate =  useNavigate()
   function handlepassword(value) {
     setPassword(value);
   }
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Enter') {
-        handlelogin();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handlelogin]);
-
   return (
     <div className="flex items-center justify-center h-[85vh]">
-      <form className="bg-blue-100 w-[80%] shadow-xl sm:w-[60%] lg:w-[40%] h-[400px] rounded-lg ">
+      {state.invalidcredital ? (
+        <div className="absolute top-20 right-5 ">
+          <Alert variant="filled" severity="error">
+            incorect username or password
+          </Alert>
+        </div>
+      ) : (
+        <></>
+      )}
+      <form
+        className="bg-blue-100 w-[80%] shadow-xl sm:w-[60%] lg:w-[40%] h-[400px] rounded-lg "
+        onSubmit={handlelogin}
+      >
         <div className="flex justify-center items-center h-[400px] ">
           <div>
             <InputField
@@ -76,7 +52,6 @@ const navigate =  useNavigate()
               names={"Username"}
               types={"username"}
               id={"outlined-username-input"}
-              autoComplete={"current-password"}
               value={username}
               handlChange={handleusername}
             />
@@ -84,7 +59,6 @@ const navigate =  useNavigate()
               names={"Password"}
               types={"password"}
               id={"outlined-password-input"}
-              autoComplete={"current-password"}
               lable={"Password"}
               value={passwordd}
               handlChange={handlepassword}
@@ -97,7 +71,7 @@ const navigate =  useNavigate()
             type="contained"
             size="large"
             className="w-[50%] sm:w-[40%] lg:w-[40%]"
-            onclick={handlelogin}
+            submit="submit"
           >
             log in
           </Button>

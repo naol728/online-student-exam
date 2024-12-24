@@ -1,6 +1,10 @@
 import Container from "./../components/Container";
 import Buttons from "../components/Button";
+import { useStudentdata } from "../context/Studentprovider";
 export default function Home() {
+  const { state } = useStudentdata();
+  const { studentinfo } = state;
+  console.log(studentinfo);
   const currentExam = [
     {
       corsecode: 1144,
@@ -15,9 +19,10 @@ export default function Home() {
       <div className="flex flex-wrap sm:flex-nowrap space-y-6 sm:space-y-0 sm:space-x-6 h-full m-4">
         <div className="w-full  h-max sm:h-64 sm:w-1/2  border border-slate-500 rounded-lg p-2  ">
           <ul>
-            <li>Name: Fuad Seid</li>
-            <li>Field: Software Engineer</li>
-            <li>Age: 22</li>
+            <li>Name: {studentinfo.name}</li>
+            <li>Field: {studentinfo.department}</li>
+            <li>stud id: {studentinfo.id}</li>
+            <li>year: {studentinfo.year}</li>
           </ul>
         </div>
         <div className="w-full sm:w-1/2  border    border-slate-500 rounded-lg p-2 h-64">

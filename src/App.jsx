@@ -8,6 +8,7 @@ import Done from "./page/Done";
 import Pagenotfound from "./page/Pagenotfound";
 import Studentprovider from "./context/Studentprovider";
 import Questionprovider from "./context/Questionprovider";
+import Authprovider from "./context/Authprovider";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,6 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Login />,
-        errorElement: <Error />,
       },
       {
         path: "/home",
