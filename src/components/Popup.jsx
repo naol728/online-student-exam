@@ -16,7 +16,6 @@ function Popup({ isOpen, onClose, children, islogout }) {
           <button style={closeButtonStyles} onClick={onClose}>
             Close
           </button>
-
           {islogout ? (
             isautenticated ? (
               <button style={closeButtonStyles} onClick={handlelogout}>
