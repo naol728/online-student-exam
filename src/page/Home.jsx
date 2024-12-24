@@ -1,9 +1,14 @@
 import Container from "./../components/Container";
 import Buttons from "../components/Button";
 import { useStudentdata } from "../context/Studentprovider";
+import { useNavigate } from "react-router-dom";
+import { useQuestion } from "../context/Questionprovider";
 export default function Home() {
   const { state } = useStudentdata();
+  // const { questions } = useQuestion();
   const { studentinfo } = state;
+
+  const navigate = useNavigate();
   const currentExam = [
     {
       corsecode: 1144,
@@ -13,6 +18,10 @@ export default function Home() {
       noquestion: 50,
     },
   ];
+
+  function handlestart() {
+    navigate("/exam");
+  }
   return (
     <>
       <div className="flex flex-wrap sm:flex-nowrap space-y-6 sm:space-y-0 sm:space-x-6 h-full m-4">
@@ -52,8 +61,12 @@ export default function Home() {
               </li>
             </ul>
           ))}
-
-          <Buttons type="contained" size="large" className=" sm:w-40 ">
+          <Buttons
+            type="contained"
+            size="large"
+            className=" sm:w-40 "
+            onclick={handlestart}
+          >
             Start
           </Buttons>
         </div>
