@@ -6,8 +6,6 @@ import { useStudentdata } from "../context/Studentprovider";
 import { Alert } from "@mui/material";
 import { useAuth } from "../context/Authprovider";
 import Navbar from "../components/Navbar";
-import Home from "./Home";
-import Applayout from "./Applayout";
 
 export default function Login() {
   const [username, setUsename] = useState("");
@@ -15,7 +13,6 @@ export default function Login() {
   const { studdata, dispach, state } = useStudentdata();
   const { login } = useAuth();
   const navigate = useNavigate();
-  const { isautenticated } = useAuth();
 
   function handlelogin() {
     const foundStudent = studdata.find(

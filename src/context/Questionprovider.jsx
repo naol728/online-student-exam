@@ -1,12 +1,26 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 const Questions = createContext();
-
+const initalstate = {};
+function reducer(action, state) {
+  switch (action.type) {
+    case "":
+      return {
+        ...state,
+      };
+  }
+}
 export default function QuestionProvider({ children }) {
+  const [state, dispach] = useReducer(reducer, initalstate);
   const [questiondata, setQuestiondata] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
 
-  // Fetch questions from the API
   useEffect(() => {
     async function fetchQuestions() {
       try {
@@ -19,12 +33,12 @@ export default function QuestionProvider({ children }) {
     }
     fetchQuestions();
   }, []);
-  // Filter questions based on date and time
-  useEffect(() => {
-    const today = new Date().toISOString().split("T")[0]; // Today's date in "YYYY-MM-DD" format
-    const currentTime = new Date(); // Current time
 
-    const filteredData = questiondata.filter((item) => item.date === today); // Filter by date
+  useEffect(() => {
+    const today = new Date().toISOString().split("T")[0];
+    const currentTime = new Date();
+
+    const filteredData = questiondata.filter((item) => item.date === today);
 
     filteredData.forEach((item) => {
       const [startHours, startMinutes] = item.starttime.split(":").map(Number);

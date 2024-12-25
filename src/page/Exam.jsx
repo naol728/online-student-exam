@@ -2,8 +2,11 @@ import React from "react";
 import Questions from "../components/Quetions";
 import { Flag } from "../components/Flag";
 import Time from "../components/Time";
+import { useQuestion } from "../context/Questionprovider";
 
 export default function Exam() {
+  const { filteredQuestions } = useQuestion();
+  console.log(filteredQuestions);
   return (
     <div className="grid grid-cols-2 space-x-10  ">
       <div>
