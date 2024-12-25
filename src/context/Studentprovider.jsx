@@ -38,7 +38,6 @@ export default function Studentprovider({ children }) {
   const [state, dispach] = useReducer(reducer, initalstate);
   const [studdata, setStuddata] = useState();
 
-  console.log(state.studentinfo);
   useEffect(() => {
     async function fetchstudentdata() {
       const res = await fetch("http://localhost:8000/students");
