@@ -10,6 +10,7 @@ export default function Home() {
   const { state } = useStudentdata();
   const { filteredQuestions } = useQuestion();
   const [isopenpopup, setIsopenpopup] = useState(false);
+  const [autcode, setAutcode] = useState("");
   const currentExam = [filteredQuestions];
   const { studentinfo } = state;
   const startstyle = {
@@ -26,7 +27,16 @@ export default function Home() {
     setIsopenpopup(false);
   }
 
-  function handlestartexam() {}
+  function handlestartexam() {
+    if (filteredQuestions.autecode === autcode) {
+      console.log("exam is started");
+      navigate("/exam");
+    }
+    console.log("app is deve");
+  }
+  function handleaute(value) {
+    setAutcode(value);
+  }
   function handlestart() {
     setIsopenpopup(true);
   }
@@ -104,11 +114,13 @@ export default function Home() {
         <div className="font-extrabold text-lg">
           Enter the authenctication code🔑
           <div className="flex justify-center items-center">
-            <InputField />
+            <InputField handlChange={handleaute} />
           </div>
         </div>
         <div className="absolute right-24 mr-20">
-          <button style={startstyle}>start exam</button>
+          <button style={startstyle} type="submit" onClick={handlestartexam}>
+            start exam
+          </button>
         </div>
       </Popup>
 
