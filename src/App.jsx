@@ -31,11 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/exam",
-        element: (
-          <Questionprovider>
-            <Exam />
-          </Questionprovider>
-        ),
+        element: <Exam />,
         errorElement: <Error />,
       },
       {
@@ -61,7 +57,9 @@ function App() {
     <>
       <Studentprovider>
         <Authprovider>
-          <RouterProvider router={router} />
+          <Questionprovider>
+            <RouterProvider router={router} />
+          </Questionprovider>
         </Authprovider>
       </Studentprovider>
     </>
