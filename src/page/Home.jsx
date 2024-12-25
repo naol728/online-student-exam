@@ -3,24 +3,32 @@ import Buttons from "../components/Button";
 import { useStudentdata } from "../context/Studentprovider";
 import { useNavigate } from "react-router-dom";
 import { useQuestion } from "../context/Questionprovider";
+import { useState } from "react";
+import Popup from "../components/Popup";
+import InputField from "../components/Inputfild";
 export default function Home() {
   const { state } = useStudentdata();
-  // const { questions } = useQuestion();
+  const { filteredQuestions } = useQuestion();
+  const [isopenpopup, setIsopenpopup] = useState(false);
+  const currentExam = [filteredQuestions];
   const { studentinfo } = state;
-
+  const startstyle = {
+    marginTop: "10px",
+    padding: "10px 20px",
+    backgroundColor: "red",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  };
   const navigate = useNavigate();
-  const currentExam = [
-    {
-      corsecode: 1144,
-      name: "Physics",
-      allowedtime: `${3} Hr`,
-      starttime: `${2}:00 Am`,
-      noquestion: 50,
-    },
-  ];
+  function handleclose() {
+    setIsopenpopup(false);
+  }
 
+  function handlestartexam() {}
   function handlestart() {
-    navigate("/exam");
+    setIsopenpopup(true);
   }
   return (
     <>
@@ -28,53 +36,85 @@ export default function Home() {
         <div className="w-full  h-max sm:h-64 sm:w-1/2  border border-slate-500 rounded-lg p-5  ">
           <ul className="flex flex-col">
             <li className="text-xl font-bold">
-              Name:{" "}
+              👋 Hello{" "}
               <span className="text-lg font-semibold"> {studentinfo.name}</span>
+              👋
             </li>
             <li className="text-xl font-bold">
-              Field:{" "}
+              {"how are you "}
+              <span className="text-lg font-semibold">{studentinfo.name}</span>
+              😃
+            </li>
+            <li className="text-xl font-bold">
+              your field is{" "}
               <span className="text-lg font-semibold">
-                {studentinfo.department}
+                {studentinfo.department} 👩‍💻
               </span>
             </li>
             <li className="text-xl font-bold">
-              stud id:{" "}
+              your id card number{" "}
               <span className="text-lg font-semibold">{studentinfo.id}</span>{" "}
             </li>
             <li className="text-xl font-bold">
-              year:{" "}
+              your are{" "}
               <span className="text-lg font-semibold">{studentinfo.year}</span>
-              {" year"}
+              {" year student"}🧑‍🎓
             </li>
           </ul>
         </div>
         <div className="w-full sm:w-1/2  border    border-slate-500 rounded-lg p-2 h-64">
           {currentExam.map((items) => (
-            <ul key={items.corsecode}>
-              <li className="text-2xl font-bold mb-4">{items.name}</li>
-              <li className="text-xl mb-2">
-                Allowed time : {items.allowedtime}
+            <ul key={items.coursecode}>
+              <li className="text-xl  mb-4">
+                <span className="text-xl font-bold">Course Name:</span> 📔
+                {items.subject}
               </li>
-              <li className="text-xl mb-2">Start Time : {items.starttime}</li>
+              <li className="text-xl mb-2">
+                {" "}
+                <span className="font-bold">Finish time :</span> ⌚
+                {items.finishtime}
+              </li>
+              <li className="text-xl mb-2">
+                {" "}
+                <span className="font-bold">Start Time :</span> ⌚
+                {items.starttime}
+              </li>
+              <li className="text-xl mb-2">
+                {" "}
+                <span className="font-bold">wish from teacher :</span> have a
+                good exam time🙂
+              </li>
               <li className="text-xl mb-12">
-                Number of question : {items.noquestion}
+                <span className="font-bold">Number of question :</span>
+                {items.questionss.length} question 🤔
               </li>
             </ul>
           ))}
           <Buttons
             type="contained"
             size="large"
-            className=" sm:w-40 "
+            className=" sm:w-36 absolute -top-8"
             onclick={handlestart}
           >
             Start
           </Buttons>
         </div>
       </div>
+      <Popup isOpen={isopenpopup} onClose={handleclose}>
+        <div className="font-extrabold text-lg">
+          Enter the authenctication code🔑
+          <div className="flex justify-center items-center">
+            <InputField />
+          </div>
+        </div>
+        <div className="absolute right-24 mr-20">
+          <button style={startstyle}>start exam</button>
+        </div>
+      </Popup>
 
       <div className="m-4 ">
         <div>
-          <p className="m-2 text-2xl font-bold">Results </p>
+          <p className="m-2 text-2xl font-bold">Results😤 </p>
         </div>
         <Container />
       </div>

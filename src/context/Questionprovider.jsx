@@ -38,7 +38,6 @@ export default function QuestionProvider({ children }) {
       const finishTime = new Date();
       finishTime.setHours(finishHours, finishMinutes, 0, 0);
       if (currentTime > startTime) {
-        console.log("time is to start");
         setFilteredQuestions(item);
       }
     });

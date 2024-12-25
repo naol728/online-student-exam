@@ -18,7 +18,7 @@ function Popup({ isOpen, onClose, children, islogout }) {
           </button>
           {islogout ? (
             isautenticated ? (
-              <button style={closeButtonStyles} onClick={handlelogout}>
+              <button style={logoutstyle} onClick={handlelogout}>
                 {isautenticated ? "logout" : ""}
               </button>
             ) : (
@@ -60,6 +60,15 @@ const closeButtonStyles = {
   marginTop: "10px",
   padding: "10px 20px",
   backgroundColor: "#007BFF",
+  color: "white",
+  border: "none",
+  borderRadius: "5px",
+  cursor: "pointer",
+};
+const logoutstyle = {
+  marginTop: "10px",
+  padding: "10px 20px",
+  backgroundColor: "red",
   color: "white",
   border: "none",
   borderRadius: "5px",

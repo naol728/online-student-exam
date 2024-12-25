@@ -11,7 +11,7 @@ function containerlist({ item }) {
   };
   return (
     <>
-      <li className="flex justify-between border-b-2 p-2">
+      <li className="flex justify-between font-bold border-b-2 p-2">
         <div>{item.coursename}</div>
 
         <Buttons onclick={handleclick}>view</Buttons>
