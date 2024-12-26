@@ -59,7 +59,7 @@ export default function Questions() {
   };
 
   return (
-    <div className="flex items-center justify-start m-3">
+    <div className="flex items-center justify-start m-2">
       <div className="w-[500px] max-w-md p-6 bg-white rounded-lg  h-[100vh] mt-8">
         <p className="mt-4 text-gray-700">
           {currentQuestion + 1} {questions[currentQuestion].question}

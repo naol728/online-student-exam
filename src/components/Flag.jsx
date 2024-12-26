@@ -74,7 +74,6 @@ export const Flag = () => {
     },
     {
       id: 19,
-      name: "hello motherfucker",
       flag: false,
     },
     {

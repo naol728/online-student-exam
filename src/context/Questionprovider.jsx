@@ -7,10 +7,35 @@ import React, {
 } from "react";
 
 const Questions = createContext();
-const initalstate = {};
-function reducer(action, state) {
+const initalstate = {
+  questions: {},
+  status: false,
+  iserror: false,
+  error: "",
+};
+function reducer(state, action) {
   switch (action.type) {
-    case "":
+    case "ready":
+      return {
+        ...state,
+        questions: action.payload,
+      };
+    case "loading":
+      return {
+        ...state,
+      };
+    case "error": {
+      return {
+        ...state,
+        error: action.payload,
+        iserror: true,
+      };
+    }
+    case "newanswer":
+      return {
+        ...state,
+      };
+    case "finish ":
       return {
         ...state,
       };
@@ -24,10 +49,12 @@ export default function QuestionProvider({ children }) {
   useEffect(() => {
     async function fetchQuestions() {
       try {
+        dispach({ type: "loading" });
         const res = await fetch("http://localhost:8000/questions");
         const data = await res.json();
         setQuestiondata(data);
       } catch (err) {
+        dispach({ type: "error", payload: err });
         console.error(err);
       }
     }
@@ -53,10 +80,11 @@ export default function QuestionProvider({ children }) {
       finishTime.setHours(finishHours, finishMinutes, 0, 0);
       if (currentTime > startTime) {
         setFilteredQuestions(item);
+        dispach({ type: "ready", payload: item });
       }
     });
   }, [questiondata]);
-
+  console.log(state.questions);
   return (
     <Questions.Provider value={{ filteredQuestions }}>
       {children}
