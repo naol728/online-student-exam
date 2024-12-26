@@ -61,5 +61,8 @@ export default function Studentprovider({ children }) {
 }
 export function useStudentdata() {
   const context = useContext(Studentcontext);
+  if (context === undefined) {
+    throw new Error("useQuestion must be used within a QuestionProvider");
+  }
   return context;
 }

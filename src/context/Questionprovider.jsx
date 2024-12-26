@@ -8,27 +8,44 @@ import React, {
 
 const Questions = createContext();
 const initalstate = {
-  questions: {},
-  status: false,
+  filteredQuestions: {},
+  questions: [],
   iserror: false,
+  answer: null,
+  index: 0,
+  points: 0,
   error: "",
+  loading: false,
+  isstarted: false,
 };
 function reducer(state, action) {
   switch (action.type) {
-    case "ready":
+    case "questionloaded":
       return {
         ...state,
-        questions: action.payload,
+        filteredQuestions: action.payload,
+        questions: action.payload.questionss.map((item, index) => ({
+          ...item,
+          id: index + 1,
+          flag: false,
+        })),
+      };
+    case "start":
+      return {
+        ...state,
+        isstarted: true,
       };
     case "loading":
       return {
         ...state,
+        loading: true,
       };
     case "error": {
       return {
         ...state,
         error: action.payload,
         iserror: true,
+        loading: false,
       };
     }
     case "newanswer":
@@ -42,9 +59,8 @@ function reducer(state, action) {
   }
 }
 export default function QuestionProvider({ children }) {
-  const [state, dispach] = useReducer(reducer, initalstate);
+  const [questionstate, dispach] = useReducer(reducer, initalstate);
   const [questiondata, setQuestiondata] = useState([]);
-  const [filteredQuestions, setFilteredQuestions] = useState([]);
 
   useEffect(() => {
     async function fetchQuestions() {
@@ -64,29 +80,25 @@ export default function QuestionProvider({ children }) {
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
     const currentTime = new Date();
-
     const filteredData = questiondata.filter((item) => item.date === today);
-
     filteredData.forEach((item) => {
       const [startHours, startMinutes] = item.starttime.split(":").map(Number);
       const [finishHours, finishMinutes] = item.finishtime
         .split(":")
         .map(Number);
-
       const startTime = new Date();
       startTime.setHours(startHours, startMinutes, 0, 0);
 
       const finishTime = new Date();
       finishTime.setHours(finishHours, finishMinutes, 0, 0);
       if (currentTime > startTime) {
-        setFilteredQuestions(item);
-        dispach({ type: "ready", payload: item });
+        dispach({ type: "questionloaded", payload: item });
       }
     });
   }, [questiondata]);
-  console.log(state.questions);
+
   return (
-    <Questions.Provider value={{ filteredQuestions }}>
+    <Questions.Provider value={{ questionstate, dispach }}>
       {children}
     </Questions.Provider>
   );

@@ -8,7 +8,8 @@ import Popup from "../components/Popup";
 import InputField from "../components/Inputfild";
 export default function Home() {
   const { state } = useStudentdata();
-  const { filteredQuestions } = useQuestion();
+  const { questionstate } = useQuestion();
+  const { filteredQuestions } = questionstate;
   const [isopenpopup, setIsopenpopup] = useState(false);
   const [autcode, setAutcode] = useState("");
   const currentExam = [filteredQuestions];
