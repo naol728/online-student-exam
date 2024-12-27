@@ -8,7 +8,7 @@ import React, {
 
 const Questions = createContext();
 const initalstate = {
-  filteredQuestions: {},
+  filteredQuestions: [],
   questions: [],
   iserror: false,
   answer: null,
@@ -17,6 +17,7 @@ const initalstate = {
   error: "",
   loading: false,
   isstarted: false,
+  secondsRemaining: 0,
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -29,6 +30,7 @@ function reducer(state, action) {
           id: index + 1,
           flag: false,
         })),
+        secondsRemaining: action.payload.secondsRemaining,
       };
     case "start":
       return {
@@ -48,14 +50,44 @@ function reducer(state, action) {
         loading: false,
       };
     }
+    case "nextquestion":
+      return {
+        ...state,
+        index: state.index + 1,
+        answer: null,
+      };
+    case "finished":
+      return {
+        ...state,
+        isstarted: false,
+      };
     case "newanswer":
+      const question = state.questions.at(state.index);
       return {
         ...state,
+        answer: action.payload,
+        pointes:
+         action.payload+1== Number(question.answer)
+            ? state.pointes + 1
+            : state.pointes,
       };
-    case "finish ":
+      case "tick":
       return {
         ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+        isstarted: state.secondsRemaining === 0 ? false : true,
       };
+    case "toggleflag":
+      const updatedQuestions = state.questions.map((question) => {
+        if (question.id === action.payload) {
+          return { ...question, flag: !question.flag };
+        }
+        return question;
+      });
+      return { ...state, questions: updatedQuestions };
+
+    default:
+      return state;
   }
 }
 export default function QuestionProvider({ children }) {
@@ -86,17 +118,24 @@ export default function QuestionProvider({ children }) {
       const [finishHours, finishMinutes] = item.finishtime
         .split(":")
         .map(Number);
+
       const startTime = new Date();
       startTime.setHours(startHours, startMinutes, 0, 0);
 
       const finishTime = new Date();
       finishTime.setHours(finishHours, finishMinutes, 0, 0);
+
+      const startTotalMinutes = startHours * 60 + startMinutes;
+      const finishTotalMinutes = finishHours * 60 + finishMinutes;
+      const differenceInSeconds = finishTotalMinutes - startTotalMinutes;
       if (currentTime > startTime) {
-        dispach({ type: "questionloaded", payload: item });
+        dispach({
+          type: "questionloaded",
+          payload: { ...item, secondsRemaining: differenceInSeconds },
+        });
       }
     });
   }, [questiondata]);
-
   return (
     <Questions.Provider value={{ questionstate, dispach }}>
       {children}

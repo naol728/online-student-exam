@@ -1,10 +1,14 @@
 import { useEffect } from "react";
+import { useQuestion } from "../context/QuestionProvider";
 
-function Time({ dispach, secondsRemaining }) {
-  /*   const mins = Math.floor(secondsRemaining / 60);
-  const seconds = secondsRemaining % 60; */
+function Timer() {
+  const { questionstate, dispach } = useQuestion();
+  const secondsRemaining = questionstate.secondsRemaining;
 
-  /* useEffect(
+  const mins = Math.floor(secondsRemaining / 60);
+  const seconds = secondsRemaining % 60;
+
+  useEffect(
     function () {
       const id = setInterval(function () {
         dispach({ type: "tick" });
@@ -13,16 +17,15 @@ function Time({ dispach, secondsRemaining }) {
       return () => clearInterval(id);
     },
     [dispach]
-  ); */
+  );
 
   return (
-    <div className="timer">
-      <h1>Remaning Time⏲️ 00:00 pm</h1>
-      {/*  {mins < 10 && "0"}
+    <div className="text-2xl font-bold text-center">
+      {mins < 10 && "0"}
       {mins}:{seconds < 10 && "0"}
-      {seconds} */}
+      {seconds}⏲️
     </div>
   );
 }
 
-export default Time;
+export default Timer;

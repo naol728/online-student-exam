@@ -56,11 +56,11 @@ function App() {
   return (
     <>
       <Studentprovider>
+      <Questionprovider>
         <Authprovider>
-          <Questionprovider>
             <RouterProvider router={router} />
-          </Questionprovider>
         </Authprovider>
+        </Questionprovider>
       </Studentprovider>
     </>
   );
