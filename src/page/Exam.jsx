@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Questions from "../components/Quetions";
 import { Flag } from "../components/Flag";
 import Time from "../components/Time";
@@ -8,10 +8,12 @@ import { useNavigate } from "react-router-dom";
 export default function Exam() {
   const { questionstate } = useQuestion();
   const navigate = useNavigate();
-  const { filteredQuestions, isstarted } = questionstate;
-  if (!isstarted) {
-    navigate("/done");
-  }
+  const { isstarted } = questionstate;
+  useEffect(() => {
+    if (!isstarted) {
+      navigate("/done");
+    }
+  }, [isstarted, navigate]);
 
   return (
     <div className="grid grid-cols-2 space-x-10  ">
