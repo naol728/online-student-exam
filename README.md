@@ -7,17 +7,16 @@ The Online Student Exam Website is a web application designed to facilitate onli
 ## Features
 
 - **User Authentication**: Secure login and registration for students.
-- **Dynamic Question Management**: Admins can create, edit, and manage questions and quizzes.
+- **Dynamic Question Management**: Admins can create, edit, and manage questions and add a student.
 - **Interactive Exam Interface**: Students can navigate through questions and submit answers in real time.
-- **Progress Tracking**: Users can track their progress and review previous questions.
 - **Responsive Design**: Fully responsive for desktops, tablets, and smartphones.
 - **Results Display**: Students can view their results and performance metrics after completing an exam.
 
 ## Technologies Used
 
-- **Frontend**: React, React Router, Tailwind CSS
-- **Backend**: Node.js
-- **Deployment**: Netlify, Vercel 
+- **Frontend**: React, React Router, Tailwind CSS🥰
+- **Backend**: React with json server and adminstration managemnet 😁
+- **Deployment**: Netlify, Vercel 🤗
 
 ## Installation
 
