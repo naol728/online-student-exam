@@ -8,7 +8,7 @@ import React, {
 
 const Questions = createContext();
 const initalstate = {
-  filteredQuestions: {},
+  filteredQuestions: [],
   questions: [],
   iserror: false,
   answer: null,
@@ -48,13 +48,27 @@ function reducer(state, action) {
         loading: false,
       };
     }
-    case "newanswer":
+    case "nextquestion":
       return {
         ...state,
+        index: state.index + 1,
+        answer: null,
       };
-    case "finish ":
+    case "finished":
       return {
         ...state,
+        isstarted: false,
+      };
+    case "newanswer":
+      const question = state.questions.at(state.index);
+      const useranswer = action.payload + 1;
+      return {
+        ...state,
+        answer: action.payload,
+        pointes:
+          Number(useranswer) == Number(question.answer)
+            ? state.pointes + 1
+            : state.pointes,
       };
   }
 }
@@ -96,6 +110,7 @@ export default function QuestionProvider({ children }) {
       }
     });
   }, [questiondata]);
+
 
   return (
     <Questions.Provider value={{ questionstate, dispach }}>

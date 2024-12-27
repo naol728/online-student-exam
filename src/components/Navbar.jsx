@@ -16,7 +16,7 @@ export default function Navbar() {
   };
   return (
     <div>
-      <nav className="flex justify-between m-0 p-4 bg-blue-100 shadow-xl ">
+      <nav className="flex justify-between m-0 p-4 bg-blue-200 shadow-2xl ">
         <Logo />
         <Buttons type={"text"} onclick={handleopen}>
           {isautenticated ? "log out" : "help"}

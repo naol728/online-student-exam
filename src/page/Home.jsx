@@ -8,8 +8,41 @@ import Popup from "../components/Popup";
 import InputField from "../components/Inputfild";
 export default function Home() {
   const { state } = useStudentdata();
-  const { questionstate } = useQuestion();
+  const { questionstate,dispach } = useQuestion();
   const { filteredQuestions } = questionstate;
+  // const filteredQuestions=
+  //   {
+  //     "id": "122a",
+  //     "subject": "mats",
+  //     "coursecode": "8898999",
+  //     "finishtime": "00:55",
+  //     "starttime": "03:55",
+  //     "date": "2024-12-26",
+  //     "autecode": "appdev",
+  //     "questionss": [
+  //       {
+  //         "question": "who is the legend in 21 centurey?",
+  //         "option": ["baltazar", "mia khalifa", "jhony sins", "p dididy"],
+  //         "answer": "3"
+  //       },
+  //       {
+  //         "question": "who is the legend in 21 centurey?",
+  //         "option": ["baltazar", "mia khalifa", "jhony sins", "p dididy"],
+  //         "answer": "2"
+  //       },
+  //       {
+  //         "question": "who is the legend in 21 centurey?",
+  //         "option": ["baltazar", "mia khalifa", "jhony sins", "p dididy"],
+  //         "answer": "4"
+  //       },
+  //       {
+  //         "question": "who is the legend in 21 centurey?",
+  //         "option": ["baltazar", "mia khalifa", "jhony sins", "p dididy"],
+  //         "answer": "1"
+  //       }
+  //     ]
+  //   }
+  
   const [isopenpopup, setIsopenpopup] = useState(false);
   const [autcode, setAutcode] = useState("");
   const currentExam = [filteredQuestions];
@@ -30,10 +63,9 @@ export default function Home() {
 
   function handlestartexam() {
     if (filteredQuestions.autecode === autcode) {
-      console.log("exam is started");
+      dispach({type:"start"})
       navigate("/exam");
     }
-    console.log("app is deve");
   }
   function handleaute(value) {
     setAutcode(value);
@@ -74,7 +106,14 @@ export default function Home() {
           </ul>
         </div>
         <div className="w-full sm:w-1/2  border    border-slate-500 rounded-lg p-2 h-64">
-          {currentExam.map((items) => (
+           
+          {
+           !currentExam[0].subject ? <div className="flex font-bold text-xl   justify-center item-center">
+            
+            <h1 className="mt-16">🤗you have no exam🤗 chill </h1>
+           </div> :
+           
+          currentExam.map((items) => (
             <ul key={items.coursecode}>
               <li className="text-xl  mb-4">
                 <span className="text-xl font-bold">Course Name:</span> 📔
@@ -88,27 +127,35 @@ export default function Home() {
               <li className="text-xl mb-2">
                 {" "}
                 <span className="font-bold">Start Time :</span> ⌚
-                {items.starttime}
+                {items
+                .starttime}
               </li>
               <li className="text-xl mb-2">
                 {" "}
                 <span className="font-bold">wish from teacher :</span> have a
                 good exam time🙂
               </li>
-              <li className="text-xl mb-12">
+              <li className="text-xl mb-3">
                 <span className="font-bold">Number of question :</span>
                 {items.questionss.length} question 🤔
               </li>
+              <li className="text-xl mb-12">
+              <Buttons
+             type="contained"
+             size="large"
+             className=" sm:w-36 "
+             onclick={handlestart}
+             >
+             Start
+           </Buttons>
+                </li>
             </ul>
-          ))}
-          <Buttons
-            type="contained"
-            size="large"
-            className=" sm:w-36 absolute -top-8"
-            onclick={handlestart}
-          >
-            Start
-          </Buttons>
+           
+        
+          ))
+          }
+         
+
         </div>
       </div>
       <Popup isOpen={isopenpopup} onClose={handleclose}>
@@ -124,6 +171,7 @@ export default function Home() {
           </button>
         </div>
       </Popup>
+      
 
       <div className="m-4 ">
         <div>

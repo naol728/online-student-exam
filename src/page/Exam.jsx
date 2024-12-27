@@ -6,7 +6,9 @@ import { useQuestion } from "../context/Questionprovider";
 
 export default function Exam() {
   const { questionstate } = useQuestion();
-  const { filteredQuestions } = questionstate;
+  const { filteredQuestions,isstarted } = questionstate;
+  if(!isstarted) return;
+  
   return (
     <div className="grid grid-cols-2 space-x-10  ">
       <div>
