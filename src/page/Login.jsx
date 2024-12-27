@@ -10,22 +10,27 @@ import Navbar from "../components/Navbar";
 export default function Login() {
   const [username, setUsename] = useState("");
   const [passwordd, setPassword] = useState("");
+  const [error, setError] = useState(false);
   const { studdata, dispach, state } = useStudentdata();
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  function handlelogin() {
+  function handlelogin(event) {
+    event.preventDefault();
     const foundStudent = studdata.find(
       (student) =>
         student.password === passwordd && student.username === username
     );
-
     if (foundStudent) {
       dispach({ type: "login", payload: foundStudent });
       login();
       navigate("home");
     } else {
+      setError("inalid credintal .please try again");
       dispach({ type: "invalidcredital" });
+      setTimeout(() => {
+        setError("");
+      }, 4000);
     }
   }
   function handleusername(value) {
@@ -39,10 +44,10 @@ export default function Login() {
     <>
       <Navbar />
       <div className="flex items-center justify-center h-[85vh]">
-        {state.invalidcredital ? (
+        {error ? (
           <div className="absolute top-20 right-5 ">
             <Alert variant="filled" severity="error">
-              incorect username or password
+              {error}
             </Alert>
           </div>
         ) : (
