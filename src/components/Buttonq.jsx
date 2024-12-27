@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuestion } from "../context/Questionprovider";
+import { useQuestion } from "../context/QuestionProvider";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 export default function NextButton() {
