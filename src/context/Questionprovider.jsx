@@ -67,11 +67,11 @@ function reducer(state, action) {
         ...state,
         answer: action.payload,
         pointes:
-         action.payload+1== Number(question.answer)
+          action.payload + 1 == Number(question.answer)
             ? state.pointes + 1
             : state.pointes,
       };
-      case "tick":
+    case "tick":
       return {
         ...state,
         secondsRemaining: state.secondsRemaining - 1,

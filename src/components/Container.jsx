@@ -6,7 +6,7 @@ function container() {
   const list = state.studentinfo.courses;
 
   return (
-    <div className=" border border-s-1 rounded-md justify-between ">
+    <div className=" border border-s-1 rounded-md h-max justify-between ">
       <ul className="divide-x-1 ">
         {list.map((items) => (
           <Containerlist key={items.coursecode} item={items} />

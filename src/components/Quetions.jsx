@@ -1,5 +1,5 @@
 import Reacts from "react";
-import { useQuestion } from "../context/QuestionProvider";
+import { useQuestion } from "../context/Questionprovider";
 import NextButton from "./Buttonq";
 
 export default function Questions() {
@@ -8,14 +8,15 @@ export default function Questions() {
 
   console.log(filteredQuestions);
   return (
-    <div className="flex items-center justify-start m-2">
-      <div className="w-[500px] max-w-md p-6 bg-white rounded-lg  h-[100vh] mt-8">
-        <p className="mt-4 text-gray-700">
+    <div className="flex items-center w-full  justify-start ml-32 mt-20 ">
+      <div className="  bg-white rounded-lg   m-5">
+        <p className="mt-4 text-2xl font-bold text-gray-700">
           {questions[index].id}
+          {","}
           {questions[index].question}
         </p>
 
-        <div className="mt-4 space-y-2">
+        <div className="mt-10 space-y-2 text-xl font-semibold">
           {questions[index].option.map((option, idx) => (
             <div
               key={idx}
