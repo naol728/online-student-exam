@@ -10,7 +10,7 @@ export const Flag = () => {
     dispach({ type: "toggleflag", payload: id });
   };
   return (
-    <div className=" flex w-[25%] h-[25%] flex-wrap mt-32  ">
+    <div className=" flex flex-wrap mt-32  ">
       {questions.map((item) => (
         <Flaglist
           item={item}

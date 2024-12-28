@@ -16,17 +16,17 @@ export default function Exam() {
   }, [isstarted, navigate]);
 
   return (
-    <div className="grid grid-cols-2 space-x-10  ">
-      <div>
+    <div className="flex justify-center items-center">
+      <div className="w-full p-4">
         <Questions />
       </div>
 
-      <div className=" flex flex-col gap-9  ">
-        <div className="pl-60 pt-4">
+      <div className=" flex flex-col justify-center ">
+        <div className="-mb-16">
           <Time />
         </div>
 
-        <div className="w-[1500px]">
+        <div className="w-[500px]">
           <Flag />
         </div>
       </div>
